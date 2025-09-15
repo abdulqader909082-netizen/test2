@@ -88,12 +88,15 @@ Answer:
 
 def ask_question(query):
     start = time.time()
-    retrieved = search(query, top_k=TOP_K)
+    retrieved = search(query, top_k=4)
     prompt = build_prompt(query, retrieved)
 
     completion = client.chat.completions.create(
         model=LLM_MODEL,
-        messages=[{"role": "user", "content": prompt}]
+        messages=[{"role": "user", "content": prompt}],
+         max_output_tokens=500,  
+    t    emperature=0.2  
+        
     )
     answer = completion.choices[0].message.content
     latency = round(time.time() - start, 3)
@@ -113,6 +116,7 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
 
 
 
