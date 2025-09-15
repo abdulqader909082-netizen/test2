@@ -7,6 +7,7 @@ from openai import OpenAI
 import os
 import time
 
+import base64
 
 def set_background(image_file):
     with open(image_file, "rb") as f:
@@ -112,5 +113,6 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
 
 
