@@ -93,9 +93,7 @@ def ask_question(query):
 
     completion = client.chat.completions.create(
         model=LLM_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-         max_output_tokens=500,  
-         temperature=0.2  
+        messages=[{"role": "user", "content": prompt}]
         
     )
     answer = completion.choices[0].message.content
@@ -116,6 +114,7 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
 
 
 
