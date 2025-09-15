@@ -49,7 +49,7 @@ def search(query, top_k=3):
     return results
 
 def build_prompt(query, retrieved):
-    context = ""
+    context = "Extra Knowledge:\nEinstein published relativity in 1905 Albert Einstein introduced special relativity in 1905 .\n\n"
     for r in retrieved:
         src = os.path.basename(r["meta"].get("source", "unknown"))
         page = r["meta"].get("page", "?")
@@ -93,3 +93,4 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
