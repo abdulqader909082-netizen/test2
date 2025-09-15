@@ -46,7 +46,7 @@ embedder = SentenceTransformer(EMBED_MODEL)
 
 # -------- Streamlit UI --------
 st.set_page_config(page_title="Relativity Q&A", layout="wide")
-st.title("📚 Relativity Q&A Chatbot")
+st.title("Special Relativity Q&A")
 st.write("Ask a question about the document and get an answer from the retrieved context.")
 
 # API key from secrets
@@ -115,6 +115,7 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
 
 
 
