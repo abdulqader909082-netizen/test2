@@ -7,6 +7,25 @@ from openai import OpenAI
 import os
 import time
 
+
+def set_background(image_file):
+    with open(image_file, "rb") as f:
+        data = f.read()
+    encoded = base64.b64encode(data).decode()
+    css = f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/jpg;base64,{encoded}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+    </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
+set_background("default.jpg")    
+
 # -------- Load index + metadata + chunks --------
 INDEX_PATH = "data/relativity_index.faiss"
 META_PATH = "data/relativity_meta.json"
@@ -93,4 +112,5 @@ if query:
             st.markdown(f"**Page {r['meta']['page']}** — Score: `{r['score']:.4f}`")
             st.write(r['text'])
             st.markdown("---")
+
 
